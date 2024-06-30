@@ -22,7 +22,8 @@ warnings.filterwarnings("ignore", category=UserWarning)
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
-def data_transforms(img, full_size, method=Image.BICUBIC):
+def data_transforms(img, full_size, method=Image.Resampling.BICUBIC
+):
     if full_size == "full_size":
         ow, oh = img.size
         h = int(round(oh / 16) * 16)

@@ -42,7 +42,8 @@ def get_params(opt, size):
     return {"crop_pos": (x, y), "flip": flip}
 
 
-def get_transform(opt, params, method=Image.BICUBIC, normalize=True, toTensor=True):
+def get_transform(opt, params, method=Image.Resampling.BICUBIC
+, normalize=True, toTensor=True):
     transform_list = []
     if "resize" in opt.preprocess_mode:
         osize = [opt.load_size, opt.load_size]
@@ -79,11 +80,13 @@ def normalize():
     return transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
 
 
-def __resize(img, w, h, method=Image.BICUBIC):
+def __resize(img, w, h, method=Image.Resampling.BICUBIC
+):
     return img.resize((w, h), method)
 
 
-def __make_power_2(img, base, method=Image.BICUBIC):
+def __make_power_2(img, base, method=Image.Resampling.BICUBIC
+):
     ow, oh = img.size
     h = int(round(oh / base) * base)
     w = int(round(ow / base) * base)
@@ -92,7 +95,8 @@ def __make_power_2(img, base, method=Image.BICUBIC):
     return img.resize((w, h), method)
 
 
-def __scale_width(img, target_width, method=Image.BICUBIC):
+def __scale_width(img, target_width, method=Image.Resampling.BICUBIC
+):
     ow, oh = img.size
     if ow == target_width:
         return img
@@ -101,7 +105,8 @@ def __scale_width(img, target_width, method=Image.BICUBIC):
     return img.resize((w, h), method)
 
 
-def __scale_shortside(img, target_width, method=Image.BICUBIC):
+def __scale_shortside(img, target_width, method=Image.Resampling.BICUBIC
+):
     ow, oh = img.size
     ss, ls = min(ow, oh), max(ow, oh)  # shortside and longside
     width_is_shorter = ow == ss

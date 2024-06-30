@@ -15,7 +15,8 @@ import torchvision.transforms as transforms
 import numpy as np
 import cv2
 
-def data_transforms(img, method=Image.BILINEAR, scale=False):
+def data_transforms(img, method=Image.Resampling.BILINEAR
+, scale=False):
 
     ow, oh = img.size
     pw, ph = ow, oh
